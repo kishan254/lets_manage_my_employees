@@ -131,5 +131,27 @@ const removeEmployee = () => {
         })
     })
     })
+};
 
+// Delete a role function
+
+const removeRole = () => {
+    // Query to select name of the roles for the user's choices
+    connection.query('SELECT title AS name FROM role', (err, roles) => {
+        if (err) throw err;
+    inquirer.prompt (
+        {
+            type: 'list',
+            message: 'What role would you like to remove?',
+            name: 'title',
+            choices: roles
+        }).then((answer) => {
+            //Deletes from the roles where the title is equal
+            connection.query('DELETE FFROM role WHERE ?', (answer), (err, res) => {
+                if (err) throw err;
+                console.log('Role removed successfully!');
+                startDirect();
+            })
+        })
+    })
 };
