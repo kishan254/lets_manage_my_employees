@@ -108,3 +108,28 @@ const updateRole = () => {
     })
     })
 };
+
+// Lets remove employees
+
+const removeEmployee = () => {
+
+    //Query to provide the user with a first name and last name of all employees to choose from, taking the id as the value
+    connection.query('SELECT CONCAT (first_name, "", last_name) AS name, id AS value FROM employee', (err, employees) => {
+        if (err) throw err;
+    inquirer.prompt ({
+        type: 'list',
+        message: 'Which employee would you like to remove?',
+        name: 'id',
+        choices: employees
+    }).then ((answer) => {
+        // Delete query where the id's match.
+
+        connection.query('DELETE FROM employee WHERE id = ?', (answer.id), (err, res) => {
+            if (err) throw err;
+            console.log('Employee removed successfully!');
+            startDirect();
+        })
+    })
+    })
+
+};
