@@ -79,5 +79,32 @@ const startDirect = () => {
 
 const updateRole = () => {
     // Query to provide the user with the names of all employees to choose from, take the id as the value
-    
-}
+    connection.query('SELECT CONCAT (first_name, "", last_name) AS name, id AS value FROM employee', (err, employees) => {
+        if (err) throw err;
+    // Query to provide the user with the names of all roles to choose from, taking the id as the value
+    connection.query('SELECT title AS name, id AS value FROM role', (err, roles) => {
+        if (err) throw err;
+    inquirer.prompt([
+        {
+            type: 'list',
+            message: 'Which employee would you like to change the role of?',
+            name: 'id',
+            choices: employees
+        },
+        {
+            type: 'list',
+            message: 'What role would you like to assign to this employee?',
+            name: 'title',
+            choices: roles
+        }
+    ]).then((answers) => {
+        //Template with two Template Literals where each answer will be input, updating the role on the specific employee
+        connection.query(`UPDATE emplyee SET role_id = ${answer.title} WHERE id = ${answers.id}`, (err, res) => {
+            if (err) throw err;
+            console.log('Role updated!');
+            startDirect();
+        })
+    })
+    })
+    })
+};
