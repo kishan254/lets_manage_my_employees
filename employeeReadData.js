@@ -3,7 +3,7 @@ const mysql = require("mysql");
 
 // Connection to the database
 
-var Connection = mysql.createConnection({
+var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
@@ -13,7 +13,7 @@ var Connection = mysql.createConnection({
 
 // Initial question that wil prompt the user what they woudld like to do.
 
-const intiQuestion = {
+const initQuestion = {
   type: "List",
   message: " What would you like to do?",
   name: "todo",
@@ -35,7 +35,7 @@ const intiQuestion = {
 // Init finction that has swtich cases for each choice the user would like to choose from
 
 const startDirect = () => {
-  inquirer.prompt(intiQuestion).then((answers) => {
+  inquirer.prompt(initQuestion).then((answers) => {
     switch (answers.todo) {
       case "View All Employees":
         viewAllEmployees();
@@ -352,7 +352,7 @@ const viewDepartments = () => {
 };
 
 // On connection, console log the information and trgger the startDirect function
-connection.connect(function(err){
+connection.connect(function(err) {
     if (err) throw err;
     console.log('Connected as ID ' + connection.threadId);
     console.log('Welcome to your Employee Directory!');

@@ -31,6 +31,12 @@ CREATE TABLE employee (
     PRIMARY KEY (id)
 );
 
+INSERT INTO department (dep_name)
+VALUES ("Sales"),
+("Finance"),
+("Engineering"),
+("Maintenance");
+
 INSERT INTO role (title, salary, department_id)
 VALUES ("Sales Rep", 90000.00, 1),
 ("Sales Supervisor", 120000.00, 1),
