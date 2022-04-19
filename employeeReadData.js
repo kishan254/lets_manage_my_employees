@@ -304,3 +304,19 @@ const addEmployee = () => {
     });
 };
 
+// Add a department
+
+const addDepartment = () => {
+    inquirer.prompt({
+        type: 'input',
+        message: 'What department would you like to add?',
+        name: 'dep_name'
+    }).then((answers) => {
+        //Query that will insert the user's input into the department table
+        connection.query('INSERT INTO department SET ?', snwers, (err, res) => {
+            if (err) throw err;
+            console.log('Department Added!');
+            startDirect();
+        })
+    })
+}
