@@ -319,4 +319,42 @@ const addDepartment = () => {
             startDirect();
         })
     })
-}
+};
+
+// Selects all roles and logs them in a table 
+
+const viewRoles = () => {
+    connection.query('SELECT * FROM role', (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        startDirect();
+    })
+};
+
+//Selects names and aliases in order to provide the managers names. Using left join to bring information from department and roles on the employee table
+
+const viewAllEmployees = () => {
+    connection.query('SELECT e.id, CONCAT (e.first_name, "", e.last_name) AS employee, role.title, role.salary, department.dep_name AS department, CONCAT (m.first_name, "", m.last_name) AS manager FROM employee e LEFT JOIN role ON e.role_id = role.id LEFT JOIN department ON role.department_id = department.id LEFT JOIN employee m ON e.manager_id = m.id', (err, res) => {
+        if (err) throw err;
+        console.log(res);
+        startDirect();
+    })
+};
+
+//Selects all departments and logs them in a table
+
+const viewDepartments = () => {
+    conenction.query('SELECT * FROM department', (err, res) => {
+        if (err) throw err;
+        console.log(res);
+        startDirect();
+    })
+};
+
+// On connection, console log the information and trgger the startDirect function
+connection.connect(function(err){
+    if (err) throw err;
+    console.log('Connected as ID ' + connection.threadId);
+    console.log('Welcome to your Employee Directory!');
+    startDirect();
+});
