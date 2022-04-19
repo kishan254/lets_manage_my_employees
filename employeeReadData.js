@@ -155,3 +155,29 @@ const removeRole = () => {
         })
     })
 };
+
+//Remove a department function
+
+const removeDep = () => {
+    //Query to provide the user with the names of the departments to choose from.
+
+    connection.query('SELECT dep_name AS name FROM department', (err, departments) => {
+        if (err) throw err;
+        inquirer.prompt({
+            typre: 'list',
+            message: 'Which department would you like to remove?',
+            name: 'dep_name',
+            choices: departments
+        }).then((answer) => {
+            console.log(answer);
+            //Delete query that will remove the department selected.
+            connection.query('DELETE FROM department WHERE ?', (answer), (err,res) => {
+                if (err) throw err;
+                console.log('Department successfully removed!');
+                startDirect();
+            })
+        })
+    })
+};
+
+// add a Role
