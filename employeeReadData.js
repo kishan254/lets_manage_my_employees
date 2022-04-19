@@ -258,3 +258,49 @@ const addRole = () => {
       });
     });
 };
+
+
+// Add an employee
+
+const addEmployee = () => {
+    //Query to provide the user with a first name and last name of all employees to choose from (for the manager), taking ID as the value
+    connection.query('SELECT CONCAT(first_name, "", last_name) AS name, id AS value FROM employee', (err, managers) => {
+        if (err) throw err;
+        // Query to provide the user with the names of all roles to choose from, tkaing the id as the value
+        connection.query('SELECT title AS name, id AS value FROM role', (err, roles_ => {
+            if (err) throw err;
+            inquirer.prompt ([
+                {
+                    type: 'input',
+                    message: 'What is the employees first name?',
+                    name: 'first_name'
+                },
+                {
+                    type: 'input',
+                    message: 'What is the employees last name?',
+                    name: 'last_name'
+                },
+                {
+                    type: 'list',
+                    message: 'What is the employees role?',
+                    name: 'role_id',
+                    choices: roles
+                },
+                {
+                    type: 'list',
+                    message: 'Who is the employees manager?',
+                    name: 'manager_id',
+                    choices: managers
+                }
+            ]).then((answers) => {
+                //Query to insert new employee in the employee table.
+                connection.query('INSERT INTO employee SET ?', answers, (err, res) => {
+                    if (err) throw err;
+                    console.log('Employee Added!');
+                    startDirect();
+                })
+            })
+        }))
+    });
+};
+
