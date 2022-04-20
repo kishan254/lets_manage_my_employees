@@ -43,7 +43,17 @@ In order to contribute to this app, you will need to understand the following;
 - Inquirer
 - Javascript
 - MySQL
-- Jest (For testing the npm)
+
+## MySQL 
+
+If there are issues with you MySQL deployment you can try the following steps on your terminal
+
+- mysql --version | This will tell you if you have installed the mysql plugin and the version of it
+- mysql -u root -p | This will connect you to the mql database -p is your root password
+- source employeeSeed.sql | Main .sql file the database is created from
+- SHOW TABLES; | shows you the 3 tables created; department, employee, & role
+- quit | takes you back to your main terminal
+
 
 ## Tests
 
