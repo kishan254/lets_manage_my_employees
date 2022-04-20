@@ -1,35 +1,25 @@
-const inquirer = require("inquirer");
-const mysql = require("mysql");
+const inquirer = require('inquirer');
+const mysql = require('mysql2');
 
 // Connection to the database
 
-var connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: "",
-  database: "employee_DB",
-});
+const connection = mysql.createConnection(
+  {
+    host:'localhost',
+    port: 3306,
+    user:'root',
+    password:'Bootcamp2021@',
+    database:'employee_db'
+  },
+console.log(`Connected to the employee.db database.`)
+);
 
 // Initial question that wil prompt the user what they woudld like to do.
-
 const initQuestion = {
-  type: "List",
-  message: " What would you like to do?",
-  name: "todo",
-  choices: [
-    "View All Employees",
-    "Update Employee Role",
-    "Add Employee",
-    "Remove Employee",
-    "View All Roles",
-    "Add Role",
-    "Remove Role",
-    "View All Departments",
-    "Add Department",
-    "Remove Department",
-    "Exit",
-  ],
+  type: 'list',
+  message: 'What would you like to do?',
+  name: 'todo',
+  choices: ['View All Employees', 'Update Employee Role','Add Employee', 'Remove Employee', 'View All Roles', 'Add Role', 'Remove Role', 'View All Departments', 'Add Department', 'Remove Department', 'Exit']
 };
 
 // Init finction that has swtich cases for each choice the user would like to choose from
@@ -344,7 +334,7 @@ const viewAllEmployees = () => {
 //Selects all departments and logs them in a table
 
 const viewDepartments = () => {
-    conenction.query('SELECT * FROM department', (err, res) => {
+    connection.query('SELECT * FROM department', (err, res) => {
         if (err) throw err;
         console.log(res);
         startDirect();
@@ -352,9 +342,9 @@ const viewDepartments = () => {
 };
 
 // On connection, console log the information and trgger the startDirect function
-connection.connect(function(err) {
-    if (err) throw err;
-    console.log('Connected as ID ' + connection.threadId);
-    console.log('Welcome to your Employee Directory!');
-    startDirect();
+connection.connect (function (err) {
+  if (err) throw err;
+  console.log('Connected as ID ' + connection.threadId);
+  console.log('Welcome to Your Employee Directory!');
+  startDirect();
 });
