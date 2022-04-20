@@ -72,17 +72,13 @@ To run tests, please use the following command:
 ![image_four]()
 
 
-![Giphy]()
-
 ## Technology
 
 - Github
-- HTML
-- CSS - Bootstrap
 - Javascript
 - Node.js
-- Express.js
-- Heroku
+- MySQL2
+- Inquirer
 
 ## Making
 
