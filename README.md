@@ -24,6 +24,7 @@ In order to run this application, you will need to install the following
 
 - npm instal node.js
 - npm install inquirer
+- npm i
 
 
 ## Usage
