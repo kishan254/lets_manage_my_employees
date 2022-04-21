@@ -63,13 +63,9 @@ To run tests, please use the following command:
 
 ## Screenshots of deployed app
 
-![image_one]()
+![image_one](images/appOne.png)
 
-![image_two]()
-
-![image_three]()
-
-![image_four]()
+![image_two](images/appTwo.png)
 
 
 ## Technology
@@ -84,14 +80,25 @@ To run tests, please use the following command:
 
 These are the screenshots of the code 
 
+CHOICES NODE.JS
 
-![Code-Snippet]()
+![Code-Snippet](images/choices_node.png)
 
-![Code-Snippet]()
+SWITCH CASES FOR NODE.JS
 
-![Code-Snippet]()
+![Code-Snippet](images/switchCases.png)
 
-![Code-Snippet]()
+UPDATE EMPLOYEES
+
+![Code-Snippet](images/updateEmployeeRole.png)
+
+REMOVE AND DELETE FUNCTIONS
+
+![Code-Snippet](images/remove_delete.png)
+
+COMPELETED (END) FUNCTIONS
+
+![Code-Snippet](images/complete.png)
 
 ## Questions
 
